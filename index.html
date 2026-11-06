@@ -10,6 +10,7 @@
 @font-face{font-family:Nepantla;src:url("data:font/woff;base64,d09GRgABAAAAAAOcAAoAAAAABGQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAABZAAAAC4AAABgRQBEXGNtYXAAAAG0AAAAQwAAAGQBBQGmZ2x5ZgAAAgwAAADlAAABCPHmSzBoZWFkAAAA9AAAADYAAAA2MB07IGhoZWEAAAEsAAAAIAAAACQGBgI4aG10eAAAAZQAAAAgAAAAIBNgAJ5sb2NhAAAB+AAAABIAAAASAQ4Azm1heHAAAAFMAAAAFwAAACAACwAQbmFtZQAAAvQAAACLAAABCGJalndwb3N0AAADgAAAABwAAAAyAKYAfQABAAAAAQAA2ofJEV8PPPUAAwPoAAAAAOcRe8IAAAAA5xF7wgAGAAAC3gK8AAAAAwACAAAAAAAAeJxjYGRgYFb4b8HAwPSegY2Bg+keA1AEBXAAAFI5A0R4nGNgZGBg4GDgY2BiAAEIiQQAAsUAHAB4nGNgZsphnMDAysDCQBgwInPsgQBIKTCEMCv8t2BgYFZgOIGmXoGBAQDGywTiAAAB9AAAAV4AAAKUACMChQAjAq0AIwKtACMC7wAMAqwABnicY2BgYGJgYGAGYhEgyQimWRgCgLQAEILEFRgcGVwZfBj8gKIh//9jivx/+P/o/73/t//f9n/r/81gM1AAANCnFJ8AAAAAAAAAABsALABCAF4AcQCEAAB4nD2OsWoCQRCGZ+bAw2CQQcSrAusWgu0iaa/IC2zatOsDWISIObAVLdMLglZ5hS0s8wQpr0iR8soUgR0yRpHp/vn+nw8QLADNKMItAJqcB2ZyOZpJ5j0mGeNGnvGTok/fvnqf7+DcmmqrBdBzbPpmZBf4IV1PMR0rfyHWSrQBHDtkxxbZBly9TmVOUYZYpwf8kjugK5ufLHRu0M8Ns7mfjIylLAR5waeikAPF0AT5xWXxVqgudLRXny0cOrRZ1sHyEctNramu/8iNUvql/f869NSULZsWbaVZSEOxSkcq4Q8iTkUeAAAAeJxljLEKgzAURU9MsLRD6dY1P2C/wtnBuUuGIEKQUHVw8dv7oikofYHk3vMOAW6sKNIoHtudpuAibc+ap5w9m4NTblyjzFWI5ZVzwZ0mZy30nbM5OGXijY9umIKzdT/G4JbWd3Nwnx/OtMpY/vREHAMTQV5LTc8oLLWFVvYd89b+7bNbne0v+tInqAB4nGNgYsAPOICYmUGDQZ/BkMGYQYXBHAAHmwEk") format("woff");font-display:swap}
 :root{color-scheme:dark;--green:#46ff39;--pale:#def5df;--line:#82988954;--ink:#080e0c;font:11px ui-monospace,Consolas,monospace}
 *{box-sizing:border-box}
+::selection{background:#0078d4;color:#fff}
 body{margin:0;background:var(--ink);color:var(--pale)}
 main{height:100vh;height:100dvh;display:grid}
 .scene{position:relative;overflow:hidden;isolation:isolate;background:var(--ink);touch-action:none;cursor:crosshair}
@@ -19,7 +20,7 @@ main{height:100vh;height:100dvh;display:grid}
 .scene::after{z-index:1;background:linear-gradient(180deg,#03090724,transparent 25%,transparent 74%,#0309074d),radial-gradient(ellipse at center,transparent 45%,#0206051c 100%)}
 canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 #trail{pointer-events:none;z-index:3}
-.brand{position:absolute;z-index:4;bottom:max(7%,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:grid;place-items:center;min-height:44px;padding:9px 17px;border:1px solid var(--green);border-radius:999px;background:#080e0c55;cursor:pointer}
+.brand{position:absolute;z-index:4;bottom:max(7%,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:grid;place-items:center;min-height:44px;padding:9px 17px;border:1px solid var(--green);background:#080e0c55;cursor:pointer}
 .brand{color:var(--green);font:400 clamp(11.5px,2.2vw,28.5px)/1 Nepantla,Bahnschrift,sans-serif;white-space:nowrap;text-decoration:none;text-shadow:0 2px 10px #071008}
 .brand:hover{text-shadow:0 0 12px #46ff3970;background:#46ff3922;box-shadow:0 0 12px #46ff3940;cursor:pointer}
 .brand:focus-visible{outline:2px solid var(--green);outline-offset:2px}
