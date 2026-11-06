@@ -3,9 +3,6 @@
   const context = canvas?.getContext('2d');
   if (!context) return;
 
-  const lightSurface = canvas.dataset.surface === 'light';
-  const line = lightSurface ? '16,149,42' : '71,255,76';
-  const label = lightSurface ? '12,113,31' : '123,255,109';
   const marks = [];
   const lifetime = 2250;
   let width, height;
@@ -61,12 +58,14 @@
   function draw(now) {
     context.clearRect(0, 0, width, height);
     while (marks.length && now - marks[0].now >= lifetime) marks.shift();
-    context.lineWidth = .75;
+    context.lineWidth = 1;
     context.font = '9px Consolas, monospace';
+    context.strokeStyle = '#00ff00';
+    context.fillStyle = '#00ff00';
     for (const mark of marks) {
       const opacity = 1 - Math.max(0, (now - mark.now - 470) / (lifetime - 470));
       const left = mark.x - mark.w / 2, top = mark.y - mark.h / 2;
-      context.strokeStyle = `rgba(${line},${opacity * .78})`;
+      context.globalAlpha = opacity;
       context.strokeRect(left, top, mark.w, mark.h);
       context.beginPath();
       context.moveTo(mark.x - 4, mark.y);
@@ -74,9 +73,9 @@
       context.moveTo(mark.x, mark.y - 4);
       context.lineTo(mark.x, mark.y + 4);
       context.stroke();
-      context.fillStyle = `rgba(${label},${opacity})`;
       context.fillText('ID ' + String(mark.id).padStart(4, '0'), left + 4, top + 10);
     }
+    context.globalAlpha = 1;
     frame = marks.length ? requestAnimationFrame(draw) : 0;
   }
 
