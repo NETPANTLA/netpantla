@@ -73,6 +73,17 @@ footer{padding:2.4em 0 3em}
         <img src="materiales/vanishing.webp" alt="Composición textil de patrones adversariales para YOLO" loading="lazy">
         <figcaption>Cinco imágenes generadas con BigGAN y optimizadas para un ataque adversarial contra YOLOv12. Una máscara delimita las zonas del diseño que se pueden modificar.</figcaption>
       </figure>
+      <figure>
+        <img src="materiales/vanishing-panuelo-biggan.png" alt="Diseño de pañuelo con una figura y un marco ornamental verdes sobre un fondo multicolor" width="3000" height="3000" loading="lazy">
+        <figcaption>Diseño de pañuelo adversarial basado en una imagen generada con BigGAN, desarrollado para ensayar la supresión de detecciones de personas con YOLOv12.</figcaption>
+      </figure>
+      <section aria-label="Referencias metodológicas de Vanishing">
+        <p>El desarrollo se apoyó en tres repositorios de investigación.</p>
+        <p>El trabajo de Thys, Van Ranst y Goedemé (2019) aportó la metodología general para optimizar parches que reducen la detección de personas. <a href="https://gitlab.com/EAVISE/adversarial-yolo">Adversarial YOLO</a>.</p>
+        <p>El trabajo de Hu et al. (2021) sirvió de referencia para partir de imágenes generadas con BigGAN y explorar parches con una apariencia naturalista. <a href="https://github.com/aiiu-lab/Naturalistic-Adversarial-Patch">Naturalistic Adversarial Patch</a>.</p>
+        <p>El trabajo de Wang, Ma y Jiang (2025) orientó el uso de máscaras para delimitar qué zonas del diseño pueden modificarse durante la optimización. <a href="https://github.com/Wwangb/BadPatch">BadPatch</a>.</p>
+        <p>El paso de la imagen digital a la tela también plantea el problema de las condiciones de captura. La técnica <em>Expectation over Transformation</em> (EoT) incorpora variaciones simuladas, como cambios de ángulo e iluminación, durante la optimización. <a href="https://proceedings.mlr.press/v80/athalye18b.html">Athalye et al. (2018)</a>.</p>
+      </section>
     </article>
     <article class="experiment">
       <div>
