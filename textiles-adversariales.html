@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>Textiles adversariales · EL NEPANTLA</title>
+<style>
+:root{color-scheme:light;background:#fff;color:#000;font:18px/1.65 Georgia,"Times New Roman",serif}
+*{box-sizing:border-box}
+body{margin:0}
+.wrap{width:min(780px,calc(100% - 40px));margin-inline:auto}
+main{padding-top:clamp(38px,7vw,88px)}
+h1,h2,h3,p,figure,ul{margin:0}
+h1,h2,h3,code{font:inherit}
+h1,h2,h3{font-weight:700}
+p+p{margin-top:.85em}
+a{color:inherit;text-underline-offset:.2em}
+a:focus-visible{outline:1px solid currentColor;outline-offset:4px}
+.subtitle{margin-top:.45em}
+.tags{margin-top:.85em}
+.hero{margin-top:1.7em}
+section{margin-top:2.4em}
+h2,h3{margin-bottom:.45em}
+.experiment + .experiment{margin-top:1.8em}
+.experiment figure{margin-top:1em}
+video,img{display:block;width:100%;height:auto}
+video{aspect-ratio:16/9;object-fit:contain}
+figcaption{margin-top:.55em}
+.resources{list-style:none;padding:0}
+.resources li+li{margin-top:.75em}
+footer{padding:2.4em 0 3em}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="masthead">
+    <h1>TEXTILES ADVERSARIALES</h1>
+    <p class="subtitle">Una propuesta antivigilancia desde el pensamiento fronterizo en México.</p>
+    <p class="tags">saberes tradicionales, computer vision, EoT, YOLO, Viola-Jones, Vigilancia</p>
+  </div>
+
+  <figure class="hero">
+    <video id="demo" muted loop playsinline preload="metadata" poster="materiales/demo-portada.webp" aria-label="Demostración de detección con YOLO"><source src="materiales/demo-yolo.mp4" type="video/mp4"></video>
+    <figcaption>Demostración experimental con YOLO</figcaption>
+  </figure>
+
+  <section aria-label="Sobre la investigación">
+    <div>
+      <p>Esta investigación explora formas de interferir con sistemas de vigilancia automatizada mediante la producción de patrones textiles y dispositivos electrónicos.</p>
+      <p>A partir de técnicas de aprendizaje automático adversarial y experimentación material, se desarrollan intervenciones capaces de reducir detecciones, generar falsos positivos o alterar registros audiovisuales.</p>
+      <p>El trabajo se sitúa en el altiplano del semidesierto mexicano, donde las herramientas computacionales se ponen en relación con prácticas textiles, referencias visuales locales y condiciones de producción específicas.</p>
+    </div>
+  </section>
+
+  <section aria-label="Patrones textiles y detección">
+    <div>
+      <p>El proyecto trabaja sobre la distancia entre la interpretación humana de una superficie textil y su procesamiento mediante sistemas de visión computacional.</p>
+      <p>Los patrones adversariales se generan mediante procedimientos algorítmicos y posteriormente se trasladan a superficies físicas mediante sublimación, bordado y tejido. Su materialización introduce variaciones de color, textura, escala y movimiento que modifican su comportamiento frente a los detectores.</p>
+      <p>La investigación examina estas transformaciones desde una práctica artística que reúne procedimientos computacionales y conocimientos textiles.</p>
+    </div>
+  </section>
+
+  <section class="experiments" aria-labelledby="desarrollo">
+    <h2 id="desarrollo">Desarrollo experimental</h2>
+    <article class="experiment">
+      <div>
+        <h3>Supresión de detección <span>/ Vanishing</span></h3>
+        <p>Desarrollo de parches adversariales destinados a reducir la identificación de la categoría <code>[person]</code> en detectores de objetos YOLO.</p>
+        <p>Patrones generados digitalmente, impresión textil y pruebas físicas.</p>
+      </div>
+      <figure>
+        <img src="materiales/vanishing.webp" alt="Composición textil de patrones adversariales para YOLO" loading="lazy">
+        <figcaption>Cinco imágenes generadas con BigGAN y optimizadas para un ataque adversarial contra YOLOv12. Una máscara delimita las zonas del diseño que se pueden modificar.</figcaption>
+      </figure>
+    </article>
+    <article class="experiment">
+      <div>
+        <h3>Falsos positivos <span>/ Fabrication</span></h3>
+        <p>Exploración de patrones incorporados a superficies textiles para provocar detecciones de rostros donde no los hay, mediante clasificadores de Haar y el algoritmo Viola-Jones.</p>
+      </div>
+      <figure>
+        <img src="materiales/fabrication.webp" alt="Telar de cintura con patrón textil para provocar falsos positivos" loading="lazy">
+        <figcaption>Telar de cintura con un patrón diseñado para provocar falsos positivos en el detector facial Viola-Jones.</figcaption>
+      </figure>
+    </article>
+    <article class="experiment">
+      <h3>Interferencia audiovisual</h3>
+      <div><p>Experimentación con circuitos de emisión infrarroja y ultrasónica orientados a alterar las condiciones de captura de imagen y sonido.</p></div>
+    </article>
+  </section>
+
+  <section aria-labelledby="consideraciones">
+    <div>
+      <h2 id="consideraciones">Consideraciones</h2>
+      <p>El desarrollo de herramientas antivigilancia plantea contradicciones sobre la representación, el uso de datos y la circulación del conocimiento técnico.</p>
+      <p>Entrenar un patrón para reducir la exposición puede requerir incorporar imágenes de las personas que se busca proteger. Una cámara puede ampliar las capacidades de vigilancia y, al mismo tiempo, proporcionar evidencia frente a una agresión. La difusión pública de una estrategia adversarial también puede modificar las condiciones de su eficacia.</p>
+      <p>Estas contradicciones forman parte de los resultados de la investigación y delimitan sus posibilidades de aplicación.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="recursos">
+    <h2 id="recursos">Recursos del proyecto</h2>
+    <ul class="resources">
+      <li><a href="https://github.com/NETPANTLA/ADV_YOLO_MX">Investigación adversarial con YOLO</a><br>Repositorio del proyecto sobre supresión de detecciones.</li>
+      <li><a href="https://github.com/NETPANTLA/detector-haar-panuelo">Visualización en tiempo real del clasificador Haar</a><br>Repositorio de la visualización experimental del detector.</li>
+      <li><a href="https://netpantla.github.io/adv-garden/">Jardín adversarial</a><br>Sistemas de vigilancia, cómo funcionan y estrategias para interferir con ellos.</li>
+    </ul>
+  </section>
+</main>
+<footer class="wrap"><a href="index.html">← Volver a EL NEPANTLA</a></footer>
+<script>
+const video = document.querySelector('#demo');
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+function updatePlayback() {
+  if (reducedMotion.matches) video.pause();
+  else video.play().catch(() => {});
+}
+reducedMotion.addEventListener('change', updatePlayback);
+updatePlayback();
+</script>
+</body>
+</html>
