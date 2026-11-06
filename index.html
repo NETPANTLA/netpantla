@@ -19,9 +19,9 @@ main{height:100vh;height:100dvh;display:grid}
 .scene::after{z-index:1;background:linear-gradient(180deg,#03090724,transparent 25%,transparent 74%,#0309074d),radial-gradient(ellipse at center,transparent 45%,#0206051c 100%)}
 canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 #trail{pointer-events:none;z-index:3}
-.brand{position:absolute;z-index:4;bottom:max(7%,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:grid;place-items:center;padding:6px;border:0;background:none;cursor:pointer}
+.brand{position:absolute;z-index:4;bottom:max(7%,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:grid;place-items:center;min-height:44px;padding:9px 17px;border:1px solid var(--green);border-radius:999px;background:#080e0c55;cursor:pointer}
 .brand{color:var(--green);font:400 clamp(11.5px,2.2vw,28.5px)/1 Nepantla,Bahnschrift,sans-serif;white-space:nowrap;text-decoration:none;text-shadow:0 2px 10px #071008}
-.brand:hover{text-shadow:0 0 12px #46ff3970}
+.brand:hover{text-shadow:0 0 12px #46ff3970;background:#46ff3922;box-shadow:0 0 12px #46ff3940;cursor:pointer}
 .brand:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 #notice{position:absolute;z-index:2;inset:50% auto auto 50%;transform:translate(-50%,-50%);margin:0;color:#9aa79e;font-size:10px;text-align:center}
 .scene[data-state="error"] #notice{inset:auto 18px 14px auto;transform:none;padding:8px;background:#07100dde;color:var(--pale);letter-spacing:normal}
@@ -37,7 +37,7 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 </section>
 </main>
 <script defer src="materiales/rastro.js"></script>
-<script defer src="materiales/escena-datos.js"></script>
-<script defer src="materiales/escena.js"></script>
+<script defer src="materiales/escena-datos.js?v=2"></script>
+<script defer src="materiales/escena.js?v=2"></script>
 </body>
 </html>
