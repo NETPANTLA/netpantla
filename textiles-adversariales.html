@@ -13,15 +13,14 @@ body{margin:0}
 .wrap{width:min(1060px,calc(100% - 40px));margin-inline:auto}
 main{padding-top:clamp(36px,6vw,76px)}
 h1,h2,h3,p,figure,ul{margin:0}
-h1,h2,h3,strong,.resources a{
-  font-weight:700;
-  text-align:left;
-  text-decoration:underline var(--green);
-  text-decoration-thickness:.2em;
-  text-decoration-skip-ink:none;
-  text-underline-offset:.14em
+h1,h2,h3,.resources a{font-weight:700}
+.highlight{
+  background-color:var(--green);
+  text-decoration:none;
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone
 }
-h1{font-size:clamp(1.62rem,4.8vw,2.65rem);line-height:1.2}
+h1{font-size:clamp(1.62rem,4.8vw,2.48rem);line-height:1.2}
 h2{font-size:clamp(1.4rem,3.2vw,1.85rem);line-height:1.3;margin-bottom:1.4rem}
 h3{font-size:clamp(1.15rem,2.6vw,1.35rem);line-height:1.35;margin-bottom:.85rem}
 p+p{margin-top:1em}
@@ -52,10 +51,9 @@ footer{padding:3.5rem 0 3rem}
 @media(min-width:850px){
   .wrap{--rail:16.25rem;--gutter:clamp(1.75rem,4vw,3.5rem)}
   .editorial-row{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);column-gap:var(--gutter);align-items:start}
-  .editorial-row > :is(h2,h3){margin-bottom:0}
-  .hero,.intro{margin-left:calc(var(--rail) + var(--gutter))}
-  .rail-heading{max-width:var(--rail)}
-  .resources p{margin-top:0}
+  .editorial-row > h2{margin-bottom:0}
+  .masthead,.hero,.intro{margin-left:calc(var(--rail) + var(--gutter))}
+  footer{padding-inline-start:calc(var(--rail) + var(--gutter))}
 }
 </style>
 </head>
@@ -73,7 +71,7 @@ footer{padding:3.5rem 0 3rem}
 </svg>
 <main class="wrap">
   <div class="masthead">
-    <h1>TEXTILES ADVERSARIALES</h1>
+    <h1><span class="highlight">TEXTILES ADVERSARIALES</span></h1>
     <ul class="tags" aria-label="Temas">
       <li>#SaberesTradicionales</li>
       <li>#VisiónComputacional</li>
@@ -94,54 +92,56 @@ footer{padding:3.5rem 0 3rem}
     <p>El trabajo parte de la distancia entre lo que una persona reconoce en un tejido y lo que detecta un sistema de visión computacional. Los patrones se generan con algoritmos y pasan a la tela mediante procesos de impresión y trabajo manual. La práctica artística examina cómo ese paso transforma la apariencia del patrón y modifica su comportamiento ante el detector.</p>
   </section>
 
-  <section class="experiments" aria-labelledby="desarrollo">
-    <h2 class="rail-heading" id="desarrollo">Desarrollo experimental</h2>
-    <article class="experiment editorial-row">
-      <h3>Supresión de detección <span>/ Vanishing</span></h3>
-      <div>
-        <p>Desarrollo de parches adversariales para reducir las detecciones de la categoría <em>person</em> en modelos YOLO.</p>
-        <p>El proceso abarca la generación digital de patrones, la impresión textil y las pruebas físicas.</p>
-        <figure>
-          <img src="materiales/vanishing.webp" alt="Composición textil de patrones adversariales para YOLO" loading="lazy">
-          <figcaption>Cinco imágenes generadas con BigGAN y optimizadas para un ataque adversarial contra YOLOv12. Una máscara delimita las zonas del diseño que se pueden modificar.</figcaption>
-        </figure>
-        <figure>
-          <img src="materiales/vanishing-panuelo-biggan.png" alt="Diseño de pañuelo con una figura y un marco ornamental verdes sobre un fondo multicolor" width="3000" height="3000" loading="lazy">
-          <figcaption>Diseño de pañuelo adversarial basado en una imagen generada con BigGAN, desarrollado para ensayar la supresión de detecciones de personas con YOLOv12.</figcaption>
-        </figure>
-        <section aria-label="Referencias metodológicas de Vanishing">
-          <p>El desarrollo se apoyó en tres repositorios de investigación.</p>
-          <p>El trabajo de Thys, Van Ranst y Goedemé (2019) aportó la metodología general para optimizar parches que reducen la detección de personas. <a href="https://gitlab.com/EAVISE/adversarial-yolo">Adversarial YOLO</a>.</p>
-          <p>El trabajo de Hu et al. (2021) sirvió de referencia para partir de imágenes generadas con BigGAN y explorar parches con una apariencia naturalista. <a href="https://github.com/aiiu-lab/Naturalistic-Adversarial-Patch">Naturalistic Adversarial Patch</a>.</p>
-          <p>El trabajo de Wang, Ma y Jiang (2025) orientó el uso de máscaras para delimitar qué zonas del diseño pueden modificarse durante la optimización. <a href="https://github.com/Wwangb/BadPatch">BadPatch</a>.</p>
-          <p>El paso de la imagen digital a la tela también plantea el problema de las condiciones de captura. La técnica <em>Expectation over Transformation</em> (EoT) incorpora variaciones simuladas, como cambios de ángulo e iluminación, durante la optimización. <a href="https://proceedings.mlr.press/v80/athalye18b.html">Athalye et al. (2018)</a>.</p>
-        </section>
-      </div>
-    </article>
-    <article class="experiment editorial-row">
-      <h3>Falsos positivos <span>/ Fabrication</span></h3>
-      <div>
-        <p>Exploración de patrones incorporados a superficies textiles para provocar detecciones de rostros donde no los hay, mediante clasificadores de Haar y el algoritmo Viola-Jones.</p>
-        <div class="fabrication-media">
+  <section class="editorial-row" aria-labelledby="desarrollo">
+    <h2 id="desarrollo"><span class="highlight">Desarrollo experimental</span></h2>
+    <div>
+      <article class="experiment">
+        <h3><span class="highlight">Supresión de detección / Vanishing</span></h3>
+        <div>
+          <p>Desarrollo de parches adversariales para reducir las detecciones de la categoría <em>person</em> en modelos YOLO.</p>
+          <p>El proceso abarca la generación digital de patrones, la impresión textil y las pruebas físicas.</p>
           <figure>
-            <img src="materiales/fabrication.webp" alt="Telar de cintura con patrón textil para provocar falsos positivos" width="1086" height="1448" loading="lazy">
-            <figcaption>Telar de cintura con un patrón diseñado para provocar falsos positivos en el detector facial Viola-Jones.</figcaption>
+            <img src="materiales/vanishing.webp" alt="Composición textil de patrones adversariales para YOLO" loading="lazy">
+            <figcaption>Cinco imágenes generadas con BigGAN y optimizadas para un ataque adversarial contra YOLOv12. Una máscara delimita las zonas del diseño que se pueden modificar.</figcaption>
           </figure>
           <figure>
-            <video muted loop playsinline preload="none" poster="materiales/rebozo-portada.webp" aria-label="Demostración del rebozo con patrón Viola-Jones"><source src="materiales/rebozo-viola-jones.mp4" type="video/mp4"></video>
-            <figcaption>Rebozo impreso mediante DTF con un patrón diseñado para provocar falsos positivos en el detector facial Viola-Jones.</figcaption>
+            <img src="materiales/vanishing-panuelo-biggan.png" alt="Diseño de pañuelo con una figura y un marco ornamental verdes sobre un fondo multicolor" width="3000" height="3000" loading="lazy">
+            <figcaption>Diseño de pañuelo adversarial basado en una imagen generada con BigGAN, desarrollado para ensayar la supresión de detecciones de personas con YOLOv12.</figcaption>
           </figure>
+          <section aria-label="Referencias metodológicas de Vanishing">
+            <p>El desarrollo se apoyó en tres repositorios de investigación.</p>
+            <p>El trabajo de Thys, Van Ranst y Goedemé (2019) aportó la metodología general para optimizar parches que reducen la detección de personas. <a href="https://gitlab.com/EAVISE/adversarial-yolo">Adversarial YOLO</a>.</p>
+            <p>El trabajo de Hu et al. (2021) sirvió de referencia para partir de imágenes generadas con BigGAN y explorar parches con una apariencia naturalista. <a href="https://github.com/aiiu-lab/Naturalistic-Adversarial-Patch">Naturalistic Adversarial Patch</a>.</p>
+            <p>El trabajo de Wang, Ma y Jiang (2025) orientó el uso de máscaras para delimitar qué zonas del diseño pueden modificarse durante la optimización. <a href="https://github.com/Wwangb/BadPatch">BadPatch</a>.</p>
+            <p>El paso de la imagen digital a la tela también plantea el problema de las condiciones de captura. La técnica <em>Expectation over Transformation</em> (EoT) incorpora variaciones simuladas, como cambios de ángulo e iluminación, durante la optimización. <a href="https://proceedings.mlr.press/v80/athalye18b.html">Athalye et al. (2018)</a>.</p>
+          </section>
         </div>
-      </div>
-    </article>
-    <article class="experiment editorial-row">
-      <h3>Interferencia audiovisual</h3>
-      <div><p>Experimentación con circuitos de emisión infrarroja y ultrasónica orientados a alterar las condiciones de captura de imagen y sonido.</p></div>
-    </article>
+      </article>
+      <article class="experiment">
+        <h3><span class="highlight">Falsos positivos / Fabrication</span></h3>
+        <div>
+          <p>Exploración de patrones incorporados a superficies textiles para provocar detecciones de rostros donde no los hay, mediante clasificadores de Haar y el algoritmo Viola-Jones.</p>
+          <div class="fabrication-media">
+            <figure>
+              <img src="materiales/fabrication.webp" alt="Telar de cintura con patrón textil para provocar falsos positivos" width="1086" height="1448" loading="lazy">
+              <figcaption>Telar de cintura con un patrón diseñado para provocar falsos positivos en el detector facial Viola-Jones.</figcaption>
+            </figure>
+            <figure>
+              <video muted loop playsinline preload="none" poster="materiales/rebozo-portada.webp" aria-label="Demostración del rebozo con patrón Viola-Jones"><source src="materiales/rebozo-viola-jones.mp4" type="video/mp4"></video>
+              <figcaption>Rebozo impreso mediante DTF con un patrón diseñado para provocar falsos positivos en el detector facial Viola-Jones.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </article>
+      <article class="experiment">
+        <h3><span class="highlight">Interferencia audiovisual</span></h3>
+        <div><p>Experimentación con circuitos de emisión infrarroja y ultrasónica orientados a alterar las condiciones de captura de imagen y sonido.</p></div>
+      </article>
+    </div>
   </section>
 
   <section class="editorial-row" aria-labelledby="consideraciones">
-    <h2 id="consideraciones">Consideraciones</h2>
+    <h2 id="consideraciones"><span class="highlight">Consideraciones</span></h2>
     <div>
       <p>El desarrollo de herramientas antivigilancia plantea contradicciones sobre la representación, el uso de datos y la circulación del conocimiento técnico.</p>
       <p>Entrenar un patrón para reducir la exposición puede requerir incorporar imágenes de las personas que se busca proteger. Una cámara puede ampliar las capacidades de vigilancia y, al mismo tiempo, proporcionar evidencia frente a una agresión. La difusión pública de una estrategia adversarial también puede modificar las condiciones de su eficacia.</p>
@@ -149,12 +149,12 @@ footer{padding:3.5rem 0 3rem}
     </div>
   </section>
 
-  <section aria-labelledby="recursos">
-    <h2 class="rail-heading" id="recursos">Recursos del proyecto</h2>
+  <section class="editorial-row" aria-labelledby="recursos">
+    <h2 id="recursos"><span class="highlight">Recursos del proyecto</span></h2>
     <ul class="resources">
-      <li class="editorial-row"><a href="https://github.com/NETPANTLA/ADV_YOLO_MX">Investigación adversarial con YOLO</a><p>Repositorio del proyecto sobre supresión de detecciones.</p></li>
-      <li class="editorial-row"><a href="https://github.com/NETPANTLA/detector-haar-panuelo">Visualización en tiempo real del clasificador Haar</a><p>Repositorio de la visualización experimental del detector.</p></li>
-      <li class="editorial-row"><a href="https://netpantla.github.io/adv-garden/">Jardín adversarial</a><p>Sistemas de vigilancia, cómo funcionan y estrategias para interferir con ellos.</p></li>
+      <li><a class="highlight" href="https://github.com/NETPANTLA/ADV_YOLO_MX">Investigación adversarial con YOLO</a><p>Repositorio del proyecto sobre supresión de detecciones.</p></li>
+      <li><a class="highlight" href="https://github.com/NETPANTLA/detector-haar-panuelo">Visualización en tiempo real del clasificador Haar</a><p>Repositorio de la visualización experimental del detector.</p></li>
+      <li><a class="highlight" href="https://netpantla.github.io/adv-garden/">Jardín adversarial</a><p>Sistemas de vigilancia, cómo funcionan y estrategias para interferir con ellos.</p></li>
     </ul>
   </section>
 </main>
