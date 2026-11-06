@@ -6,18 +6,16 @@
 <meta name="theme-color" content="#090e0b">
 <title>EL NEPANTLA</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preload" as="image" href="materiales/escena-inicial.webp" media="(aspect-ratio > 4/5)">
-<link rel="preload" as="image" href="materiales/escena-inicial-vertical.webp" media="(aspect-ratio <= 4/5)">
 <style>
 @font-face{font-family:Nepantla;src:url("data:font/woff;base64,d09GRgABAAAAAAOcAAoAAAAABGQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABPUy8yAAABZAAAAC4AAABgRQBEXGNtYXAAAAG0AAAAQwAAAGQBBQGmZ2x5ZgAAAgwAAADlAAABCPHmSzBoZWFkAAAA9AAAADYAAAA2MB07IGhoZWEAAAEsAAAAIAAAACQGBgI4aG10eAAAAZQAAAAgAAAAIBNgAJ5sb2NhAAAB+AAAABIAAAASAQ4Azm1heHAAAAFMAAAAFwAAACAACwAQbmFtZQAAAvQAAACLAAABCGJalndwb3N0AAADgAAAABwAAAAyAKYAfQABAAAAAQAA2ofJEV8PPPUAAwPoAAAAAOcRe8IAAAAA5xF7wgAGAAAC3gK8AAAAAwACAAAAAAAAeJxjYGRgYFb4b8HAwPSegY2Bg+keA1AEBXAAAFI5A0R4nGNgZGBg4GDgY2BiAAEIiQQAAsUAHAB4nGNgZsphnMDAysDCQBgwInPsgQBIKTCEMCv8t2BgYFZgOIGmXoGBAQDGywTiAAAB9AAAAV4AAAKUACMChQAjAq0AIwKtACMC7wAMAqwABnicY2BgYGJgYGAGYhEgyQimWRgCgLQAEILEFRgcGVwZfBj8gKIh//9jivx/+P/o/73/t//f9n/r/81gM1AAANCnFJ8AAAAAAAAAABsALABCAF4AcQCEAAB4nD2OsWoCQRCGZ+bAw2CQQcSrAusWgu0iaa/IC2zatOsDWISIObAVLdMLglZ5hS0s8wQpr0iR8soUgR0yRpHp/vn+nw8QLADNKMItAJqcB2ZyOZpJ5j0mGeNGnvGTok/fvnqf7+DcmmqrBdBzbPpmZBf4IV1PMR0rfyHWSrQBHDtkxxbZBly9TmVOUYZYpwf8kjugK5ufLHRu0M8Ns7mfjIylLAR5waeikAPF0AT5xWXxVqgudLRXny0cOrRZ1sHyEctNramu/8iNUvql/f869NSULZsWbaVZSEOxSkcq4Q8iTkUeAAAAeJxljLEKgzAURU9MsLRD6dY1P2C/wtnBuUuGIEKQUHVw8dv7oikofYHk3vMOAW6sKNIoHtudpuAibc+ap5w9m4NTblyjzFWI5ZVzwZ0mZy30nbM5OGXijY9umIKzdT/G4JbWd3Nwnx/OtMpY/vREHAMTQV5LTc8oLLWFVvYd89b+7bNbne0v+tInqAB4nGNgYsAPOICYmUGDQZ/BkMGYQYXBHAAHmwEk") format("woff");font-display:swap}
 :root{color-scheme:dark;--green:#46ff39;--pale:#def5df;--line:#82988954;--ink:#080e0c;font:11px ui-monospace,Consolas,monospace}
 *{box-sizing:border-box}
 body{margin:0;background:var(--ink);color:var(--pale)}
 main{height:100vh;height:100dvh;display:grid}
-.scene{position:relative;overflow:hidden;isolation:isolate;background:#111f26;touch-action:none;cursor:crosshair}
+.scene{position:relative;overflow:hidden;isolation:isolate;background:var(--ink);touch-action:none;cursor:crosshair}
 .scene::before,.scene::after{content:"";position:absolute;inset:0;pointer-events:none}
-.scene::before{background:url("materiales/escena-inicial.webp") center / cover}
-@media (aspect-ratio <= 4/5){.scene::before{background-image:url("materiales/escena-inicial-vertical.webp")}}
+.scene[data-state="error"]::before{background:url("materiales/escena-inicial.webp") center / cover}
+@media (aspect-ratio <= 4/5){.scene[data-state="error"]::before{background-image:url("materiales/escena-inicial-vertical.webp")}}
 .scene::after{z-index:1;background:linear-gradient(180deg,#03090724,transparent 25%,transparent 74%,#0309074d),radial-gradient(ellipse at center,transparent 45%,#0206051c 100%)}
 canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 #trail{pointer-events:none;z-index:3}
@@ -25,7 +23,8 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .brand{color:var(--green);font:400 clamp(11.5px,2.2vw,28.5px)/1 Nepantla,Bahnschrift,sans-serif;white-space:nowrap;text-decoration:none;text-shadow:0 2px 10px #071008}
 .brand:hover{text-shadow:0 0 12px #46ff3970}
 .brand:focus-visible{outline:2px solid var(--green);outline-offset:2px}
-#notice{position:absolute;z-index:2;inset:auto 18px 14px;margin:0;padding:8px;background:#07100dde;width:fit-content}
+#notice{position:absolute;z-index:2;inset:50% auto auto 50%;transform:translate(-50%,-50%);margin:0;color:var(--green);letter-spacing:.16em;text-align:center}
+.scene[data-state="error"] #notice{inset:auto 18px 14px auto;transform:none;padding:8px;background:#07100dde;color:var(--pale);letter-spacing:normal}
 </style>
 </head>
 <body>
@@ -34,9 +33,10 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 <canvas id="world" aria-hidden="true"></canvas>
 <canvas id="trail" aria-hidden="true"></canvas>
 <a class="brand" href="textiles-adversariales.html" aria-label="EL NEPANTLA — abrir Textiles adversariales">EL NEPANTLA</a>
-<p id="notice" role="status" hidden></p>
+<p id="notice" role="status">CARGANDO ESCENA…</p>
 </section>
 </main>
+<script defer src="materiales/rastro.js"></script>
 <script defer src="materiales/escena-datos.js"></script>
 <script defer src="materiales/escena.js"></script>
 </body>
